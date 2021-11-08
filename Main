@@ -1,0 +1,106 @@
+#Paint
+#Zacaria Jama
+from random import *
+from pygame import *;
+res=(1024,768)
+screen=display.set_mode(res)
+backround = image.load("zelda-anniversary.jpg")
+screen.blit(backround, (0,0))
+
+running=True
+
+while running:
+    for e in event.get():
+
+        if e.type == QUIT:
+            running=False
+    #------------------
+b = 5
+    col = [(0,0,0), (255,255,255), (222,222,222), (111,111,111)]
+
+    mx,my = mouse.get_pos()
+    mb = mouse.get_pressed()
+
+#draw.rect(screen,(123,123,123),(15,15,185,368))  #Stamp area
+    draw.rect(screen,col[2],(15,15,85,112.67),3)       # 1
+    draw.rect(screen,col[1],(17,17,81,108.67))
+
+    draw.rect(screen,col[2],(115,15,85,112.67),3)       # 2
+    draw.rect(screen,col[1],(117,17,81,108.67))
+
+    draw.rect(screen,col[2],(15,142.67,85,112.67),3)       # 3
+    draw.rect(screen,col[1],(17,144.67,81,108.67))
+
+    draw.rect(screen,col[2],(115,142.67,85,112.67),3)       # 4
+    draw.rect(screen,col[1],(117,144.67,81,108.67))
+
+    draw.rect(screen,col[2],(15,270.34,85,112.67),3)       # 5
+    draw.rect(screen,col[1],(17,272.34,81,108.67))
+
+    draw.rect(screen,col[2],(115,270.34,85,112.67),3)       # 6
+    draw.rect(screen,col[1],(117,272.34,81,108.67))
+#   (15,393,185,300)   #Colour area
+
+#   (15,703,92.5,55)   #Save/Load button area
+
+#   (224,593,785,165)  #Utencil area
+
+    for x in range(224,1009,100):
+        draw.rect(screen,col[3],(x,598,85,155),3)
+        draw.rect(screen,col[1],(x+2,600,81,151))
+
+    pencil = image.load("pencil.png")           # Pencil
+    screen.blit(pencil, (226,600))
+    eraser = image.load("eraser.png")
+    screen.blit(eraser, (326,600))
+    text = image.load("text.png")
+    screen.blit(text, (426,600))
+
+    #---------------------Controls----------------------
+    if pencilRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],pencilRect,3)
+        if mb[0] == 1:
+            tool = "pencil"
+    elif eraserRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],eraserRect,3)
+        if mb[0] == 1:
+            tool = "eraser"
+    elif textRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],textRect,3)
+        if mb[0] == 1:
+            tool = "text"
+    elif circleRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],circleRect,3)
+        if mb[0]== 1:
+            tool = "circle"
+    elif rectRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],rectRect,3)
+        if mb[0] == 1:
+            tool = "rect"
+    elif lineRect.collidepoint(mx,my):
+        draw.rect(screen,col[0],lineRect,3)
+        if mb == 1:
+            tool = "line"
+
+    if canvas.collidepoint(mx,my):
+        if mb[0] == 1:
+            if tool == "pencil":
+                draw.line(screen,(0),(omx,omy),(mx,my),5)
+                screen.set_clip(canvas)
+            if tool == "eraser":
+                draw.line(screen,col[1],(omx,omy),(mx,my),10)
+                screen.set_clip(canvas)
+        
+        elif mb[1] == :
+          b+=0.5
+        elif mb[1] == :
+          b+=0.5
+
+
+
+    #------------------
+    display.flip()
+quit()
+
+# print the value of "mb" when [1] is pressed to see tha when it's scrolled up or down whether or not it has a different value than 1. then I can sub it to a value.
+#www.picresize.com
